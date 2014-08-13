@@ -1,5 +1,6 @@
 import types
-from pin import Pins
+from pin import PINS
+
 
 class GpioRaw(object):
     def __init__(self, linux_id):
@@ -9,13 +10,13 @@ class GpioRaw(object):
 
     def __getattr__(self, name):
         '''
-        This automatically generates functions for 
+        This automatically generates functions for
             direction(self, arg = None)
                 arg: 'out', 'in' to write to direction file. None to read from direction file.
-                
+
             drive(self, arg = None)
                 arg: 'pullup', 'strong', 'pulldown', 'hiz' to write to drive file. None to read from drive file.
-            
+
             value(self, arg = None)
                 arg: non-None to write to value file. None to read from value file.
         '''
@@ -44,7 +45,7 @@ class GpioRaw(object):
     def export(self):
         print "%s > %s" % (str(self.linux_id), "/sys/class/gpio/export")
 
-        # FIXME error handling is required
+        #FIXME error handling is required
         with open("/sys/class/gpio/export", 'w') as f:
             f.write(str(self.linux_id))
 
@@ -54,18 +55,20 @@ class GpioRaw(object):
         with open("/sys/class/gpio/unexport", 'w') as f:
             f.write(str(self.linux_id))
 
+
 class Gpio(GpioRaw):
     def __init__(self, arduino_id):
         if isinstance(arduino_id, int):
             arduino_id = "IO%d" % arduino_id
 
-        pin = Pins[arduino_id]
+        pin = PINS[arduino_id]
 
         for (key, value) in pin.mux_seletors.items():
             mux_selector = MuxSelector(key, value)
             mux_selector.select()
 
         GpioRaw.__init__(self, pin.linux_id)
+
 
 class MuxSelector(GpioRaw):
     def __init__(self, linux_id, v):

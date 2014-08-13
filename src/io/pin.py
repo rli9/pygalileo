@@ -3,7 +3,7 @@ class Pin(object):
         self.linux_id = linux_id
         self.mux_seletors = mux_seletors
 
-Pins = {'IO0' : Pin(50, {40: 1}),
+PINS = {'IO0' : Pin(50, {40: 1}),
         'IO1' : Pin(51, {41: 1}),
         'IO2' : Pin(32, {31: 1}),
         'IO3' : Pin(18, {30: 1}),
