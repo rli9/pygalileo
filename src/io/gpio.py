@@ -30,11 +30,12 @@ class GpioRaw(object):
                 
                 with open(file_name, 'w') as f: 
                     f.write(str(arg)) 
+                    
+                return self
             else:
                 with open(file_name, 'r') as f:
-                    f.readline().strip('\r\n')                 
-                        
-            return self
+                    return f.readline().rstrip('\r\n')                 
+
         _attr.__name__ = name        
 
         setattr(self, name, types.MethodType(_attr, self))
