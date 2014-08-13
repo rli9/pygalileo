@@ -1,6 +1,6 @@
 from distutils.core import setup
 
-setup(name = 'pygalileo', 
+setup(name = 'pygalileo',
       version = '0.0.2',
       description = 'Python Libary to Manipulate Intel Galileo Board',
       package_dir = {'pygalileo' : 'src'},
