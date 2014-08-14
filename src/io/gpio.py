@@ -23,7 +23,7 @@ class GpioRaw(object):
         if name.startswith('_'):
             raise AttributeError(name)
 
-        def _attr(self, arg = None):
+        def _attr(self, arg=None):
             file_name = "/sys/class/gpio/gpio%d/%s" % (self.linux_id, name)
 
             if arg is not None:

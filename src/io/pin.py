@@ -1,5 +1,5 @@
 class Pin(object):
-    def __init__(self, linux_id, mux_seletors = {}):
+    def __init__(self, linux_id, mux_seletors={}):
         self.linux_id = linux_id
         self.mux_seletors = mux_seletors
 
