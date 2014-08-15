@@ -1,7 +1,15 @@
+from mux_selector import MuxSelector
+
+
 class Pin(object):
     def __init__(self, linux_id, mux_seletors={}):
         self.linux_id = linux_id
         self.mux_seletors = mux_seletors
+
+    def select(self):
+        for (key, value) in self.mux_seletors.items():
+            mux_selector = MuxSelector(key, value)
+            mux_selector.select()
 
 PINS = {'IO0' : Pin(50, {40: 1}),
         'IO1' : Pin(51, {41: 1}),
