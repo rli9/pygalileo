@@ -1,7 +1,10 @@
 from pygalileo.io.gpio import Gpio
+import logging
 import time
 
 if __name__ == '__main__':
+    log = logging.getLogger('pygalileo')
+    log.setLevel(logging.INFO)
 #     #FIXME built in LED blink doesn't work
 #     led_gpio = Gpio(13)
 #     led_gpio.direction('out')

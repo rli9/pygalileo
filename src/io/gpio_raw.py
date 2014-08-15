@@ -1,4 +1,8 @@
 import types
+import logging
+
+LOG = logging.getLogger(__name__)
+LOG.addHandler(logging.StreamHandler())
 
 
 class GpioRaw(object):
@@ -26,7 +30,7 @@ class GpioRaw(object):
             file_name = "/sys/class/gpio/gpio%d/%s" % (self.linux_id, name)
 
             if arg is not None:
-                print "%s > %s" % (str(arg), file_name)
+                LOG.info("%s > %s" % (str(arg), file_name))
 
                 with open(file_name, 'w') as f:
                     f.write(str(arg))
@@ -42,14 +46,14 @@ class GpioRaw(object):
         return getattr(self, name)
 
     def export(self):
-        print "%s > %s" % (str(self.linux_id), "/sys/class/gpio/export")
+        LOG.info("%s > %s" % (str(self.linux_id), "/sys/class/gpio/export"))
 
         #FIXME error handling is required
         with open("/sys/class/gpio/export", 'w') as f:
             f.write(str(self.linux_id))
 
     def unexport(self):
-        print "%s > %s" % (str(self.linux_id), "/sys/class/gpio/unexport")
+        LOG.info("%s > %s" % (str(self.linux_id), "/sys/class/gpio/unexport"))
 
         with open("/sys/class/gpio/unexport", 'w') as f:
             f.write(str(self.linux_id))
