@@ -1,4 +1,3 @@
-import types
 from pin import PINS
 from gpio_raw import GpioRaw
 
