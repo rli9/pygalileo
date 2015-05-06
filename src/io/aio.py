@@ -1,5 +1,4 @@
 from pin import PINS
-from gpio import MuxSelector
 
 
 class Aio(object):
@@ -8,11 +7,9 @@ class Aio(object):
             arduino_id = "A%d" % arduino_id
 
         pin = PINS[arduino_id]
+        pin.select()
 
-        for (key, value) in pin.mux_seletors.items():
-            mux_selector = MuxSelector(key, value)
-            mux_selector.select()
-
+        self.arduino_id = arduino_id
         self.linux_id = pin.linux_id
 
     def value(self):

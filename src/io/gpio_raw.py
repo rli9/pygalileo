@@ -8,7 +8,12 @@ LOG.addHandler(logging.StreamHandler())
 class GpioRaw(object):
     def __init__(self, linux_id):
         self.linux_id = linux_id
-        self.unexport()
+
+        try:
+            self.unexport()
+        except Exception as e:
+            LOG.warning("%s" % e)
+
         self.export()
 
     def __getattr__(self, name):

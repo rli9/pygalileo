@@ -11,4 +11,3 @@ class Gpio(GpioRaw):
         pin.select()
 
         GpioRaw.__init__(self, pin.linux_id)
-
