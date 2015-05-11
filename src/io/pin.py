@@ -2,8 +2,9 @@ from mux_selector import MuxSelector
 
 
 class Pin(object):
-    def __init__(self, linux_id, mux_seletors={}):
-        self.linux_id = linux_id
+    def __init__(self, gpio_linux_id, mux_seletors={}, pwm_linux_id=None):
+        self.gpio_linux_id = gpio_linux_id
+        self.pwm_linux_id = pwm_linux_id
         self.mux_seletors = mux_seletors
 
     def select(self):
@@ -14,15 +15,15 @@ class Pin(object):
 PINS = {'IO0': Pin(50, {40: 1}),
         'IO1': Pin(51, {41: 1}),
         'IO2': Pin(32, {31: 1}),
-        'IO3': Pin(18, {30: 1}),
+        'IO3': Pin(18, {30: 1}, 3),
         'IO4': Pin(28),
-        'IO5': Pin(17),
-        'IO6': Pin(24),
+        'IO5': Pin(17, {}, 5),
+        'IO6': Pin(24, {}, 6),
         'IO7': Pin(27),
         'IO8': Pin(26),
-        'IO9': Pin(19),
-        'IO10': Pin(16, {42: 1}),
-        'IO11': Pin(25, {43: 1}),
+        'IO9': Pin(19, {}, 1),
+        'IO10': Pin(16, {42: 1}, 7),
+        'IO11': Pin(25, {43: 1}, 4),
         'IO12': Pin(38, {54: 1}),
         'IO13': Pin(39, {55: 1}),
         'IO14': Pin(44, {37: 1}),
@@ -38,4 +39,6 @@ PINS = {'IO0': Pin(50, {40: 1}),
         'A4': Pin(4, {21: 0}),
         'A5': Pin(5, {20: 0}),
         'I2C_SDA': Pin(-1),
-        'I2C_SCL': Pin(-1, {29: 0})}
+        'I2C_SCL': Pin(-1, {29: 0}),
+        'LED': Pin(3),
+        }

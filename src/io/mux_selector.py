@@ -1,9 +1,9 @@
-from gpio_raw import GpioRaw
+from gpio import Gpio
 
 
-class MuxSelector(GpioRaw):
+class MuxSelector(Gpio):
     def __init__(self, linux_id, v):
-        GpioRaw.__init__(self, linux_id)
+        Gpio.__init__(self, linux_id)
         self.v = v
 
     def select(self):

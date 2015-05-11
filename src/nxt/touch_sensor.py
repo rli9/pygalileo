@@ -1,13 +1,13 @@
-from pygalileo.io.gpio import Gpio
+from pygalileo.io.dio import Dio
 
 
 class TouchSensor(object):
     def __init__(self, arduino_id):
-        self.gpio = Gpio(arduino_id)
-        self.gpio.direction('in')
+        self.dio = Dio(arduino_id)
+        self.dio.direction('in')
 
     def pressed(self):
         '''
         return value: True if pressed, False if unpressed
         '''
-        return self.gpio.value() == '0'
+        return self.dio.value() == '0'
