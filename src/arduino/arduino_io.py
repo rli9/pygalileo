@@ -33,6 +33,6 @@ def digitalRead(pin):
     dio = _DIOS[pin]
     return dio.value()
 
-def analogyWrite(pin, value):
+def analogWrite(pin, value):
     dio = _DIOS[pin]
     return dio.pwm(value)
