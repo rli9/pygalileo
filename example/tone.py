@@ -13,7 +13,7 @@ if __name__ == '__main__':
     value = 0
 
     while True:
-        analogyWrite(10, value)
+        analogWrite(10, value)
         time.sleep(2)
 
         value = value + 50

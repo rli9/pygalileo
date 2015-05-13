@@ -6,9 +6,8 @@ LOG.addHandler(logging.StreamHandler())
 
 
 class Gpio(object):
-    def __init__(self, linux_id, pwm_linux_id=None):
+    def __init__(self, linux_id):
         self.linux_id = linux_id
-        self.pwm_linux_id = pwm_linux_id
 
         try:
             self.unexport()
@@ -17,6 +16,14 @@ class Gpio(object):
 
         self.export()
 
+    def __del__(self):
+        LOG.info("__del__ Gpio %d " % self.linux_id)
+        
+        try:
+            self.unexport()
+        except Exception as e:
+            LOG.warning("%s" % e)
+                    
     def __getattr__(self, name):
         '''
         This automatically generates functions for
@@ -58,26 +65,7 @@ class Gpio(object):
         with open("/sys/class/gpio/export", 'w') as f:
             f.write(str(self.linux_id))
 
-        if self.pwm_linux_id is not None:
-            LOG.info("%s > %s" % (str(self.pwm_linux_id), "/sys/class/pwm/pwmchip0/export"))
-
-            #FIXME rli9 error handling is required
-            #FIxME rli9 only export pwm when pwm() is called
-            with open("/sys/class/pwm/pwmchip0/export", 'w') as f:
-                f.write(str(self.pwm_linux_id))
-
-            with open("/sys/class/pwm/pwmchip0/pwm%s/enable" % self.pwm_linux_id, 'w') as f:
-                f.write("1")
-
     def unexport(self):
-        try:
-            if self.pwm_linux_id is not None:
-                LOG.info("%s > %s" % (str(self.pwm_linux_id), "/sys/class/pwm/pwmchip0/unexport"))
-                with open("/sys/class/pwm/pwmchip0/unexport", 'w') as f:
-                    f.write(str(self.pwm_linux_id))
-        except Exception as e:
-            LOG.warning(e)
-
         LOG.info("%s > %s" % (str(self.linux_id), "/sys/class/gpio/unexport"))
         with open("/sys/class/gpio/unexport", 'w') as f:
             f.write(str(self.linux_id))

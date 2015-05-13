@@ -1,5 +1,5 @@
 from pygalileo.io.dio import Dio
-from pygalileo.io.pwmio import Pwmio
+from pygalileo.io.pwmio import PwmIO
 
 '''
 Defining Digital Pins modes: INPUT, INPUT_PULLUP, and OUTPUT
@@ -14,7 +14,7 @@ HIGH = 1
 LOW = 0
 
 _DIOS = {}
-
+_PWMIOS = {}
 
 def pinMode(pin, mode):
     if pin not in _DIOS:
@@ -34,5 +34,10 @@ def digitalRead(pin):
     return dio.value()
 
 def analogWrite(pin, value):
-    dio = _DIOS[pin]
-    return dio.pwm(value)
+    if pin not in _PWMIOS:
+        pwmio = PwmIO(pin)
+        _PWMIOS[pin] = pwmio
+    else:
+        pwmio = _PWMIOS[pin]
+    
+    return pwmio.pwm(value)
