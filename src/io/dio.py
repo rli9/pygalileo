@@ -1,9 +1,6 @@
 from pin import GPIO_PINS
 from gpio import Gpio
-import logging
 
-LOG = logging.getLogger(__name__)
-LOG.addHandler(logging.StreamHandler())
 
 class Dio(Gpio):
     def __init__(self, arduino_id):
