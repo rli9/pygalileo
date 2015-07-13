@@ -1,9 +1,9 @@
-from pygalileo.nxt.touch_sensor import TouchSensor
+from pyquark.nxt.touch_sensor import TouchSensor
 import logging
 import time
 
 if __name__ == '__main__':
-    log = logging.getLogger('pygalileo')
+    log = logging.getLogger('pyquark')
     log.setLevel(logging.INFO)
 
     touch_sensor = TouchSensor(10)

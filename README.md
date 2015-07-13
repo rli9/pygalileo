@@ -1,9 +1,9 @@
-pygalileo
+pyquark
 =========
 
 ## Installation
 
-Run below command to install pygalileo module:
+Run below command to install pyquark module:
 
     python setup.py install
 

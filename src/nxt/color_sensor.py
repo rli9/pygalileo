@@ -1,5 +1,5 @@
-from pygalileo.io.i2c import I2c
-from pygalileo.io.aio import Aio
+from pyquark.io.i2c import I2c
+from pyquark.io.aio import Aio
 
 
 class ColorSensor(object):

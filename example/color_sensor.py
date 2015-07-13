@@ -1,10 +1,10 @@
-from pygalileo.nxt.color_sensor import ColorSensor
+from pyquark.nxt.color_sensor import ColorSensor
 import logging
 import time
-from pygalileo.io.i2c import I2c
+from pyquark.io.i2c import I2c
 
 if __name__ == '__main__':
-    log = logging.getLogger('pygalileo')
+    log = logging.getLogger('pyquark')
     log.setLevel(logging.INFO)
 
     i2c = I2c()

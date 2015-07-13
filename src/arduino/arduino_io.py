@@ -1,5 +1,5 @@
-from pygalileo.io.dio import Dio
-from pygalileo.io.pwmio import PwmIO
+from pyquark.io.dio import Dio
+from pyquark.io.pwmio import PwmIO
 
 '''
 Defining Digital Pins modes: INPUT, INPUT_PULLUP, and OUTPUT

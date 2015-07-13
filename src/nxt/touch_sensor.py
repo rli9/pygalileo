@@ -1,4 +1,4 @@
-from pygalileo.io.dio import Dio
+from pyquark.io.dio import Dio
 
 
 class TouchSensor(object):

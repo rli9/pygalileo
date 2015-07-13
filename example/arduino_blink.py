@@ -1,9 +1,9 @@
-from pygalileo.arduino import *
+from pyquark.arduino import *
 import logging
 
 
 if __name__ == '__main__':
-    log = logging.getLogger('pygalileo')
+    log = logging.getLogger('pyquark')
     log.setLevel(logging.INFO)
 
     pinMode(10, OUTPUT)

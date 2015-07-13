@@ -1,9 +1,9 @@
-from pygalileo.io.dio import Dio
+from pyquark.io.dio import Dio
 import logging
 import time
 
 if __name__ == '__main__':
-    log = logging.getLogger('pygalileo')
+    log = logging.getLogger('pyquark')
     log.setLevel(logging.INFO)
     #FIXME built in LED blink doesn't work
     led = Dio("LED")
