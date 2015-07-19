@@ -5,6 +5,9 @@ LOG = logging.getLogger(__name__)
 LOG.addHandler(logging.StreamHandler())
 
 
+'''
+Gpio class represents Linux GPIO port and abstracts the manipulation of GPIO file system
+'''
 class Gpio(object):
     def __init__(self, linux_id):
         self.linux_id = linux_id
@@ -18,12 +21,12 @@ class Gpio(object):
 
     def __del__(self):
         LOG.info("__del__ Gpio %d " % self.linux_id)
-        
+
         try:
             self.unexport()
         except Exception as e:
             LOG.warning("%s" % e)
-                    
+
     def __getattr__(self, name):
         '''
         This automatically generates functions for
@@ -45,7 +48,7 @@ class Gpio(object):
             if arg is not None:
                 LOG.info("%s > %s" % (str(arg), file_name))
 
-                #FIXME rli9 low performance to open/close file everytime
+                # FIXME rli9 low performance to open/close file everytime
                 with open(file_name, 'w') as f:
                     f.write(str(arg))
 
@@ -60,7 +63,7 @@ class Gpio(object):
         return getattr(self, name)
 
     def export(self):
-        #FIXME rli9 error handling is required
+        # FIXME rli9 error handling is required
         LOG.info("%s > %s" % (str(self.linux_id), "/sys/class/gpio/export"))
         with open("/sys/class/gpio/export", 'w') as f:
             f.write(str(self.linux_id))

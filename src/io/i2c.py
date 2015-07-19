@@ -2,7 +2,6 @@ from pin import PINS
 from smbus import SMBus
 
 
-#FIXME do we name i2c as I2c or I2C
 class I2c(object):
     def __init__(self):
         self.bus_id = 0

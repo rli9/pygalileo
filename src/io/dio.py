@@ -2,6 +2,9 @@ from pin import GPIO_PINS
 from gpio import Gpio
 
 
+'''
+Dio represents digital IO of Galileo board
+'''
 class Dio(Gpio):
     def __init__(self, arduino_id):
         if isinstance(arduino_id, int):

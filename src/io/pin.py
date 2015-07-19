@@ -1,6 +1,11 @@
 from mux_selector import MuxSelector
 
 
+'''
+GpioPin class represents underlying GPIO pin of Galileo board
+- Pin may need to be enabled through mux selector if it shares HW resource w/ another pin
+  e.g. GPIO pin 50 (IO0) is muxed w/ UART0_RXD
+'''
 class GpioPin(object):
     def __init__(self, gpio_linux_id, mux_seletors={}):
         self.gpio_linux_id = gpio_linux_id
@@ -42,6 +47,10 @@ GPIO_PINS = {'IO0': GpioPin(50, {40: 1}),
         'LED': GpioPin(3),
         }
 
+'''
+PwmPin class represents underlying PWM pin of Galileo board
+- PWM pin is currently reusing GPIO pin
+'''
 class PwmPin(object):
     def __init__(self, pwm_linux_id, gpio_pin):
         assert(pwm_linux_id is not None)
@@ -51,11 +60,11 @@ class PwmPin(object):
 
     def select(self):
         self.gpio_pin.select()
-    
+
 PWM_PINS = {'PWM3': PwmPin(3, GPIO_PINS["IO3"]),
             'PWM5': PwmPin(5, GPIO_PINS["IO5"]),
             'PWM6': PwmPin(6, GPIO_PINS["IO6"]),
             'PWM9': PwmPin(1, GPIO_PINS["IO9"]),
             'PWM10': PwmPin(7, GPIO_PINS["IO10"]),
             'PWM11': PwmPin(4, GPIO_PINS["IO11"])
-            }  
+            }

@@ -1,6 +1,9 @@
 from pin import GPIO_PINS
 
 
+'''
+Aio represents analog IO of Galileo board
+'''
 class Aio(object):
     def __init__(self, arduino_id):
         if isinstance(arduino_id, int):
