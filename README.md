@@ -9,6 +9,7 @@ Run below command to install pyquark module:
 
 ## Architecture
 
+```
 +----------------------------------------------+
 |                    example                   |
 |          +-----------------------------------+
@@ -36,6 +37,7 @@ Run below command to install pyquark module:
 |    +-----------+             +-----------+   |
 |                                              |
 +----------------------------------------------+
+```
 
 ## Reference
 - https://github.com/intel-iot-devkit/mraa
