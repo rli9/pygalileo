@@ -1,4 +1,4 @@
-from pin import GPIO_PINS
+from galileo_config import DIO_MAPPINGS
 from gpio import Gpio
 
 
@@ -10,7 +10,7 @@ class Dio(Gpio):
         if isinstance(arduino_id, int):
             arduino_id = "IO%d" % arduino_id
 
-        pin = GPIO_PINS[arduino_id]
+        pin = DIO_MAPPINGS[arduino_id]
         pin.select()
 
         Gpio.__init__(self, pin.gpio_linux_id)

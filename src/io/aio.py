@@ -1,4 +1,4 @@
-from pin import GPIO_PINS
+from galileo_config import AIO_MAPPINGS
 
 
 '''
@@ -9,7 +9,7 @@ class Aio(object):
         if isinstance(arduino_id, int):
             arduino_id = "A%d" % arduino_id
 
-        pin = GPIO_PINS[arduino_id]
+        pin = AIO_MAPPINGS[arduino_id]
         pin.select()
 
         self.arduino_id = arduino_id
